@@ -5,11 +5,12 @@ import { RouterLink } from "@angular/router";
 import { map } from "rxjs/operators";
 import { Comment } from "../../core/models/comment.model";
 import { AsyncPipe, DatePipe, NgIf } from "@angular/common";
+import { PickerComponent } from "@ctrl/ngx-emoji-mart";
 
 @Component({
   selector: "app-article-comment",
   templateUrl: "./article-comment.component.html",
-  imports: [RouterLink, DatePipe, NgIf, AsyncPipe],
+  imports: [RouterLink, DatePipe, NgIf, AsyncPipe, PickerComponent],
   standalone: true,
 })
 export class ArticleCommentComponent {
@@ -19,7 +20,7 @@ export class ArticleCommentComponent {
   canModify$ = inject(UserService).currentUser.pipe(
     map(
       (userData: User | null) =>
-        userData?.username === this.comment.author.username
-    )
+        userData?.username === this.comment.author.username,
+    ),
   );
 }

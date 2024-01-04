@@ -18,6 +18,7 @@ interface ArticleForm {
   title: FormControl<string>;
   description: FormControl<string>;
   body: FormControl<string>;
+  coverImage: FormControl<string>;
 }
 
 @Component({
@@ -31,6 +32,7 @@ export default class EditorComponent implements OnInit {
   articleForm: UntypedFormGroup = new FormGroup<ArticleForm>({
     title: new FormControl("", { nonNullable: true }),
     description: new FormControl("", { nonNullable: true }),
+    coverImage: new FormControl("", { nonNullable: true }),
     body: new FormControl("", { nonNullable: true }),
   });
   tagField = new FormControl<string>("", { nonNullable: true });

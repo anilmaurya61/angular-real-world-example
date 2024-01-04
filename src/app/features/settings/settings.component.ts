@@ -11,6 +11,7 @@ import { UserService } from "../../core/services/user.service";
 import { ListErrorsComponent } from "../../shared/list-errors.component";
 import { Errors } from "../../core/models/errors.model";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
+import { HttpClient } from "@angular/common/http";
 
 interface SettingsForm {
   image: FormControl<string>;
@@ -45,12 +46,20 @@ export default class SettingsComponent implements OnInit {
   constructor(
     private readonly router: Router,
     private readonly userService: UserService,
+    private readonly http: HttpClient,
   ) {}
 
   ngOnInit(): void {
-    this.settingsForm.patchValue(
-      this.userService.getCurrentUser() as Partial<User>,
-    );
+    const currentUser = this.userService.getCurrentUser() as unknown as User;
+
+    const apiUrl = `/profiles/anilmaurya`;
+
+    this.http.get<any>(apiUrl).subscribe((data) => {
+      console.log(data);
+      this.settingsForm.patchValue(data);
+    });
+    this.settingsForm.patchValue(currentUser);
+    console.log(this.settingsForm);
   }
 
   logout(): void {

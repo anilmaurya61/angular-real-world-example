@@ -20,11 +20,14 @@ import { IfAuthenticatedDirective } from "../../shared/if-authenticated.directiv
 import { Errors } from "../../core/models/errors.model";
 import { Profile } from "../../core/models/profile.model";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
+import { CommonModule } from "@angular/common";
+import { PickerComponent } from "@ctrl/ngx-emoji-mart";
 
 @Component({
   selector: "app-article-page",
   templateUrl: "./article.component.html",
   imports: [
+    CommonModule,
     ArticleMetaComponent,
     RouterLink,
     NgClass,
@@ -39,6 +42,7 @@ import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
     ReactiveFormsModule,
     IfAuthenticatedDirective,
     NgIf,
+    PickerComponent,
   ],
   standalone: true,
 })

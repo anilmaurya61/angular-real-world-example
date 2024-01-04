@@ -1,6 +1,13 @@
 @if (article) {
   <div class="article-page">
-    <div class="banner">
+    <div
+      class="banner"
+      [ngStyle]="{
+        'background-image': 'url(\'' + article.coverImage + '\')',
+        'background-repeat': 'no-repeat',
+        'background-size': 'cover'
+      }"
+    >
       <div class="container">
         <h1>{{ article.title }}</h1>
 
